@@ -14,6 +14,9 @@ class YOLO_V1_resnet(nn.Module):
         resnet_out_channel = resnet.fc.in_features
         #去除池化层和全连接层
         self.resnet = nn.Sequential(*list(resnet.children())[:-2])
+        
+        for p in self.parameters():
+            p.requires_grad = False
 
         #原yolov1的最后四个卷积层
         self.conv_layers = nn.Sequential(
