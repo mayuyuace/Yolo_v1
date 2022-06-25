@@ -63,5 +63,5 @@ def train():
             print("model saved!")
 
 if __name__ == "__main__":
-    #generate_label_txt(DATASET_PATH)
+    generate_label_txt(DATASET_PATH)
     train()
