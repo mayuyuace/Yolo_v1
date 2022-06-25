@@ -20,11 +20,8 @@ def train():
 
     model = YOLO_V1_resnet().cuda()
     #model = YOLO_V1_resnet()
-    for layer in model.children():
-        layer.requires_grad = False
-        break
     criterion = LOSS()
-    optimizer = torch.optim.SGD(model.parameters(), lr=lr, momentum=0.9, weight_decay=0.0005)
+    optimizer = torch.optim.SGD(filter(lambda x : x.requires_grad, model.parameters()), lr=lr, momentum=0.9, weight_decay=0.0005)
 
     for e in range(epoch):
         print(f"train:{e+1} epoch")
