@@ -70,8 +70,8 @@ class LOSS(nn.Module):
         masks = []
         for i in range(b_num):
             masks.append(ious[i])
-            masks[i][iou != masks[i]] == 0
-            masks[i][iou == masks[i]] == 1
+            masks[i][iou != masks[i]] = 0
+            masks[i][iou == masks[i]] = 1
 
         for i in range(b_num):
             obj_loss += 5.0 * torch.sum(labels[:, [i * 5 + 4], :, :] * masks[i] * 
